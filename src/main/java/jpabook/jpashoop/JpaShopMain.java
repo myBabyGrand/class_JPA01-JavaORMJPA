@@ -1,27 +1,27 @@
-package hellojpa;
+package jpabook.jpashoop;
 
-import javax.persistence.*;
-import java.util.List;
+import hellojpa.Member;
+import hellojpa.RoleType;
 
-public class JpaMain {
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+public class JpaShopMain {
+
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Member member = new Member();
-            member.setId(1L);
-            member.setUsername("user1");
-            member.setRoleType(RoleType.USER);
-            em.persist(member);
-            tx.commit();
+
         }catch (Exception e){
-           tx.rollback();
+            tx.rollback();
         }finally {
             em.close();
         }
         emf.close();
-
     }
 }
