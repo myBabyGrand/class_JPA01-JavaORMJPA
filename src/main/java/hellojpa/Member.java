@@ -2,13 +2,13 @@ package hellojpa;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
 @Table(name = "member_OLD")
 public class Member {
     @Id
+    @GeneratedValue
     private Long id;
 
     @Column(name = "name", insertable = true, updatable = true)
@@ -31,6 +31,33 @@ public class Member {
 
     @Transient
     private int temp;
+
+    public Team getTeam() {
+        return team;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", age=" + age +
+                ", roleType=" + roleType +
+                ", createdDate=" + createdDate +
+                ", lastModifiedDate=" + lastModifiedDate +
+                ", description='" + description + '\'' +
+                ", temp=" + temp +
+                ", team=" + team +
+                '}';
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Member() {
     }
