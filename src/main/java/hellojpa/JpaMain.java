@@ -43,7 +43,7 @@ public class JpaMain {
             }
 
             //수정  A->B팀
-            findMember.setTeam(team2);
+            findMember.enrollOrChangeTeam(team2);
 
             tx.commit();
         }catch (Exception e){

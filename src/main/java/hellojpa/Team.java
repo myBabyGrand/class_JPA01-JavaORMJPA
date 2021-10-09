@@ -16,6 +16,7 @@ public class Team {
         return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+//                ", members='"+members + //stackoverflow by 양방향 맵핑
                 '}';
     }
 
@@ -38,7 +39,7 @@ public class Team {
         this.members = members;
     }
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team")//Read Only
     private List<Member> members = new ArrayList<>();
 
     public String getName() {
