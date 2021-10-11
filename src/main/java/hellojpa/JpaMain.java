@@ -43,7 +43,13 @@ public class JpaMain {
             }
 
             //수정  A->B팀
-            findMember.enrollOrChangeTeam(team2);
+//            findMember.enrollOrChangeTeam(team2);
+
+
+            Locker locker = new Locker();
+            locker.setName("A Locker");
+            locker.setMember(member2);
+            em.persist(locker);
 
             tx.commit();
         }catch (Exception e){

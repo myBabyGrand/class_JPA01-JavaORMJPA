@@ -39,7 +39,9 @@ public class Team {
         this.members = members;
     }
 
-    @OneToMany(mappedBy = "team")//Read Only
+    @OneToMany(mappedBy = "team")//일대다 양방향맵핑, 주인의 반대, Read Only
+//    @OneToMany //다대일, Team이 주인이다.
+//    @JoinColumn(name = "TEAM_ID")
     private List<Member> members = new ArrayList<>();
 
     public String getName() {

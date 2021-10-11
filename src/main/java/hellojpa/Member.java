@@ -9,6 +9,7 @@ import java.util.Date;
 public class Member {
     @Id
     @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
     @Column(name = "name", insertable = true, updatable = true)
@@ -56,8 +57,15 @@ public class Member {
     }
 
     @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
+    @JoinColumn(name = "TEAM_ID")//일대다, 연관관계주인
+//    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) //다대일 양방향맵핑, 반대편이 주인임을 야매로 표기하기
     private Team team;
+
+//    @OneToOne
+//    @JoinColumn(name = "LOCKER_ID") //일대일 주인
+    @OneToOne(mappedBy = "member") //일대일 주인의 반대
+    private Locker locker;
+
 
     public void enrollOrChangeTeam(Team team){
         this.team = team;
