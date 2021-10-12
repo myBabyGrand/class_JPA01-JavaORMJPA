@@ -2,7 +2,9 @@ package hellojpa;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "member_OLD")
@@ -65,6 +67,9 @@ public class Member {
 //    @JoinColumn(name = "LOCKER_ID") //일대일 주인
     @OneToOne(mappedBy = "member") //일대일 주인의 반대
     private Locker locker;
+
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
 
     public void enrollOrChangeTeam(Team team){
