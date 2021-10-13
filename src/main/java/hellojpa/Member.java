@@ -1,14 +1,15 @@
 package hellojpa;
 
+import jpabook.jpashoop.domain.BaseEntity;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "member_OLD")
-public class Member {
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -22,12 +23,6 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
 
     @Lob
     private String description;
@@ -46,8 +41,6 @@ public class Member {
                 ", username='" + username + '\'' +
                 ", age=" + age +
                 ", roleType=" + roleType +
-                ", createdDate=" + createdDate +
-                ", lastModifiedDate=" + lastModifiedDate +
                 ", description='" + description + '\'' +
                 ", temp=" + temp +
                 ", team=" + team +
@@ -110,22 +103,6 @@ public class Member {
 
     public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
     }
 
     public String getDescription() {

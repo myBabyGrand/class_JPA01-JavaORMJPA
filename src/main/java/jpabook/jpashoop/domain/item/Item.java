@@ -1,11 +1,16 @@
-package jpabook.jpashoop.domain;
+package jpabook.jpashoop.domain.item;
+
+import jpabook.jpashoop.domain.BaseEntity;
+import jpabook.jpashoop.domain.Category;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity {
     public Long getId() {
         return id;
     }
@@ -50,4 +55,5 @@ public class Item {
 
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();
+
 }

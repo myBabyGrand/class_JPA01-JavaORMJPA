@@ -1,11 +1,13 @@
 package jpabook.jpashoop.domain;
 
+import jpabook.jpashoop.domain.item.Item;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Category {
+public class Category extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "CATEGORY_ID")

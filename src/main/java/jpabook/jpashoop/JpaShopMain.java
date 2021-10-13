@@ -2,6 +2,7 @@ package jpabook.jpashoop;
 
 import hellojpa.Member;
 import hellojpa.RoleType;
+import jpabook.jpashoop.domain.item.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,7 +17,14 @@ public class JpaShopMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
+            Movie movie = new Movie();
+            movie.setName("Parasite");
+            movie.setDirector("Bong");
+            movie.setActor("Song");
+            em.persist(movie);
 
+
+            tx.commit();
         }catch (Exception e){
             tx.rollback();
         }finally {
