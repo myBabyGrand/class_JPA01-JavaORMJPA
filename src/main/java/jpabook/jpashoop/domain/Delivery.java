@@ -2,6 +2,8 @@ package jpabook.jpashoop.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 public class Delivery extends BaseEntity{
     @Id
@@ -14,7 +16,7 @@ public class Delivery extends BaseEntity{
     private String street;
     private String zipcode;
 
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = LAZY)
     private Order order;
 
 }

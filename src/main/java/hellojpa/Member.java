@@ -18,17 +18,8 @@ public class Member extends BaseEntity {
     @Column(name = "name", insertable = true, updatable = true)
     private String username;
 
-    @Column
-    private BigDecimal age;
-
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
-
-    @Lob
-    private String description;
-
-    @Transient
-    private int temp;
 
     public Team getTeam() {
         return team;
@@ -39,10 +30,6 @@ public class Member extends BaseEntity {
         return "Member{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", age=" + age +
-                ", roleType=" + roleType +
-                ", description='" + description + '\'' +
-                ", temp=" + temp +
                 ", team=" + team +
                 '}';
     }
@@ -51,12 +38,12 @@ public class Member extends BaseEntity {
         this.team = team;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")//일대다, 연관관계주인
 //    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false) //다대일 양방향맵핑, 반대편이 주인임을 야매로 표기하기
     private Team team;
 
-//    @OneToOne
+    //    @OneToOne
 //    @JoinColumn(name = "LOCKER_ID") //일대일 주인
     @OneToOne(mappedBy = "member") //일대일 주인의 반대
     private Locker locker;
@@ -65,7 +52,7 @@ public class Member extends BaseEntity {
     private List<MemberProduct> memberProducts = new ArrayList<>();
 
 
-    public void enrollOrChangeTeam(Team team){
+    public void enrollOrChangeTeam(Team team) {
         this.team = team;
         team.getMembers().add(this);
     }
@@ -89,14 +76,6 @@ public class Member extends BaseEntity {
         this.username = username;
     }
 
-    public BigDecimal getAge() {
-        return age;
-    }
-
-    public void setAge(BigDecimal age) {
-        this.age = age;
-    }
-
     public RoleType getRoleType() {
         return roleType;
     }
@@ -105,21 +84,6 @@ public class Member extends BaseEntity {
         this.roleType = roleType;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getTemp() {
-        return temp;
-    }
-
-    public void setTemp(int temp) {
-        this.temp = temp;
-    }
 }
 
 
