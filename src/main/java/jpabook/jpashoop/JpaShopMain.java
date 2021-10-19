@@ -1,13 +1,15 @@
 package jpabook.jpashoop;
 
-import hellojpa.Member;
 import hellojpa.RoleType;
+import jpabook.jpashoop.domain.Address;
+import jpabook.jpashoop.domain.Member;
 import jpabook.jpashoop.domain.item.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.time.LocalDateTime;
 
 public class JpaShopMain {
 
@@ -17,12 +19,13 @@ public class JpaShopMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Movie movie = new Movie();
-            movie.setName("Parasite");
-            movie.setDirector("Bong");
-            movie.setActor("Song");
-            em.persist(movie);
-
+            Member member = new Member();
+            member.setName("PARK");
+            member.setAddress(new Address("SEOUL", "SAMSUNG STREET", "111111"));
+            member.setCreatedBy("TEST");
+            member.setCreatedDate(LocalDateTime.now());
+            member.setLastModifiedBy("TEST");
+            member.setLastModifiedDate(LocalDateTime.now());
 
             tx.commit();
         }catch (Exception e){
@@ -33,3 +36,4 @@ public class JpaShopMain {
         emf.close();
     }
 }
+
