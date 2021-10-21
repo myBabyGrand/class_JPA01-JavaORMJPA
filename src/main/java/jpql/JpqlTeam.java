@@ -16,7 +16,7 @@ public class JpqlTeam {
     private String name;
 
     @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+    private List<JpqlMember> members = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -34,11 +34,11 @@ public class JpqlTeam {
         this.name = name;
     }
 
-    public List<Member> getMembers() {
+    public List<JpqlMember> getMembers() {
         return members;
     }
 
-    public void setMembers(List<Member> members) {
+    public void setMembers(List<JpqlMember> members) {
         this.members = members;
     }
 }

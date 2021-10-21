@@ -13,9 +13,25 @@ public class JpqlMember {
     private String username;
     private LocalDateTime birth;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
     private JpqlTeam team;
+
+    @Enumerated(EnumType.STRING)
+    private MemberType memberType;
+
+    public void changeTeam(JpqlTeam afterTeam){
+        this.team = afterTeam;
+    }
+
+    @Override
+    public String toString() {
+        return "JpqlMember{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", birth=" + birth +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -47,5 +63,13 @@ public class JpqlMember {
 
     public void setTeam(JpqlTeam team) {
         this.team = team;
+    }
+
+    public MemberType getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(MemberType memberType) {
+        this.memberType = memberType;
     }
 }
