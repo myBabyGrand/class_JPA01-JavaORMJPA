@@ -16,7 +16,7 @@ public class JpqlOrder {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+    private JpqlMember member;
 
     private int orderAmount;
 
@@ -35,11 +35,11 @@ public class JpqlOrder {
         this.id = id;
     }
 
-    public Member getMember() {
+    public JpqlMember getMember() {
         return member;
     }
 
-    public void setMember(Member member) {
+    public void setMember(JpqlMember member) {
         this.member = member;
     }
 

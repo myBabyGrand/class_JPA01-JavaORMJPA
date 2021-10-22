@@ -2,6 +2,8 @@ package jpql;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "JPQL_MEMBER")
@@ -20,6 +22,9 @@ public class JpqlMember {
     @Enumerated(EnumType.STRING)
     private MemberType memberType;
 
+    @OneToMany(mappedBy = "member")
+    private List<JpqlOrder> orders = new ArrayList<>();
+
     public void changeTeam(JpqlTeam afterTeam){
         this.team = afterTeam;
     }
@@ -30,6 +35,7 @@ public class JpqlMember {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", birth=" + birth +
+                ", memberType=" + memberType +
                 '}';
     }
 
