@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "JPQL_MEMBER")
+@NamedQuery(name  = "JpqlMember.findByUserName", query = "select m from JpqlMember m where m.username = :username")
 public class JpqlMember {
     @Id
     @GeneratedValue

@@ -94,25 +94,41 @@ public class jpqlMain {
 */
 
             //collection fetch join
-            String query9 = "select m  from JpqlTeam m join fetch m.members";
-            List<JpqlTeam> result9 = em.createQuery(query9,  JpqlTeam.class).getResultList();
-            System.out.println(result9.size());
-            int i= 0;
-            for (JpqlTeam team : result9) {
-                for(JpqlMember member : team.getMembers()){//team의 등록된 member 수만큼 즁복된다. bulk team의 회원수 36 * 36 (=1296)
-                    i++;
-                    System.out.println( i + " ["+team.getName()+"] "+ member.toString());
-                }
-            }
+//            String query9 = "select m  from JpqlTeam m join fetch m.members";
+//            List<JpqlTeam> result9 = em.createQuery(query9,  JpqlTeam.class).getResultList();
+//            System.out.println(result9.size());
+//            int i= 0;
+//            for (JpqlTeam team : result9) {
+//                for(JpqlMember member : team.getMembers()){//team의 등록된 member 수만큼 즁복된다. bulk team의 회원수 36 * 36 (=1296)
+//                    i++;
+//                    System.out.println( i + " ["+team.getName()+"] "+ member.toString());
+//                }
+//            }
 
             //collection fetch join - distinct
-            String query10 = "select distinct m  from JpqlTeam m join fetch m.members";
-            List<JpqlTeam> result10 = em.createQuery(query10,  JpqlTeam.class).getResultList();
-            System.out.println(result10.size());
-            for (JpqlTeam team : result10) {
-                for(JpqlMember member : team.getMembers()){
-                    System.out.println("["+team.getName()+"] "+ member.toString());
-                }
+//            String query10 = "select distinct t  from JpqlTeam t join fetch t.members";
+//            List<JpqlTeam> result10 = em.createQuery(query10,  JpqlTeam.class).getResultList();
+//            System.out.println(result10.size());
+//            for (JpqlTeam team : result10) {
+//                for(JpqlMember member : team.getMembers()){
+//                    System.out.println("["+team.getName()+"] "+ member.toString());
+//                }
+//            }
+
+            //collection batch-size 100 -> in절
+//            String query11 = "select t  from JpqlTeam t";
+//            List<JpqlTeam> result11 = em.createQuery(query11,  JpqlTeam.class).setFirstResult(0).setMaxResults(2).getResultList();
+//            System.out.println(result11.size());
+//            for (JpqlTeam team : result11) {
+//                for(JpqlMember member : team.getMembers()){
+//                    System.out.println("["+team.getName()+"] "+ member.toString());
+//                }
+//            }
+
+            List<JpqlMember> result12 = em.createNamedQuery("JpqlMember.findByUserName", JpqlMember.class).setParameter("username", "PARK").getResultList();
+            System.out.println(result12.size());
+            for (JpqlMember member : result12) {
+                System.out.println(member.toString());
             }
 
             tx.commit();
